@@ -5,6 +5,7 @@ import RibbonMenu from "../blocks/RibbonMenu.js";
 import categories from "../storages/categories.js";
 
 import StepSlider from "../blocks/StepSlider.js";
+import ProductsGrid from "../blocks/ProductsGrid.js";
 
 export default class Main {
   constructor() {}
@@ -13,6 +14,10 @@ export default class Main {
     this.renderCarousel();
     this.renderRibbon();
     this.renderStepSlider();
+
+    this.products = await this.fetchProducts();
+
+    this.renderProductsGrid();
   }
 
   renderCarousel() {
@@ -33,5 +38,20 @@ export default class Main {
     });
 
     document.querySelector("[data-slider-holder]").append(this.stepSlider.elem);
+  }
+
+  renderProductsGrid() {
+    this.productsGrid = new ProductsGrid(this.products);
+    document.querySelector("[data-products-grid-holder]").innerHTML = "";
+    document
+      .querySelector("[data-products-grid-holder]")
+      .append(this.productsGrid.elem);
+  }
+
+  async fetchProducts() {
+    let response = await fetch("../storages/products.json");
+    let products = await response.json();
+
+    return products;
   }
 }
