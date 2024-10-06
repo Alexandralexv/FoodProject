@@ -104,8 +104,8 @@ export default class Main {
   }
 
   async fetchProducts() {
-    // let response = await fetch("../storages/products.json");
-    let response = await fetch("../../products.json");
+    let response = await fetch("../storages/products.json");
+    // let response = await fetch("../../products.json");
     let products = await response.json();
 
     return products;
