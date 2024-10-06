@@ -1,5 +1,5 @@
-import Carousel from "./assets/blocks/Carousel.js";
-import slides from "./assets/storages/slides.js";
+import Carousel from "../blocks/Carousel.js";
+import slides from "../storages/slides.js";
 
 export default class Main {
   constructor() {}
