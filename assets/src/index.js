@@ -7,6 +7,9 @@ import categories from "../storages/categories.js";
 import StepSlider from "../blocks/StepSlider.js";
 import ProductsGrid from "../blocks/ProductsGrid.js";
 
+import CartIcon from "../blocks/CartIcon.js";
+import Cart from "../blocks/Cart.js";
+
 export default class Main {
   constructor() {}
 
@@ -14,10 +17,55 @@ export default class Main {
     this.renderCarousel();
     this.renderRibbon();
     this.renderStepSlider();
+    this.renderCartIcon();
+
+    this.cart = new Cart(this.cartIcon);
 
     this.products = await this.fetchProducts();
 
     this.renderProductsGrid();
+
+    this.productsGrid.updateFilter({
+      noNuts: document.getElementById("nuts-checkbox").checked,
+      vegeterianOnly: document.getElementById("vegeterian-checkbox").checked,
+      maxSpiciness: this.stepSlider.value,
+      category: this.ribbonMenu.value,
+    });
+
+    document.body.addEventListener("product-add", ({ detail: productId }) => {
+      let product = this.products.find((product) => product.id == productId);
+      this.cart.addProduct(product);
+    });
+
+    this.stepSlider.elem.addEventListener(
+      "slider-change",
+      ({ detail: value }) => {
+        this.productsGrid.updateFilter({
+          maxSpiciness: value,
+        });
+      }
+    );
+
+    this.ribbonMenu.elem.addEventListener(
+      "ribbon-select",
+      ({ detail: categoryId }) => {
+        this.productsGrid.updateFilter({
+          category: categoryId,
+        });
+      }
+    );
+
+    document.getElementById("nuts-checkbox").onchange = (event) => {
+      this.productsGrid.updateFilter({
+        noNuts: event.target.checked,
+      });
+    };
+
+    document.getElementById("vegeterian-checkbox").onchange = (event) => {
+      this.productsGrid.updateFilter({
+        vegeterianOnly: event.target.checked,
+      });
+    };
   }
 
   renderCarousel() {
@@ -38,6 +86,13 @@ export default class Main {
     });
 
     document.querySelector("[data-slider-holder]").append(this.stepSlider.elem);
+  }
+
+  renderCartIcon() {
+    let cartIconHolder = document.querySelector("[data-cart-icon-holder]");
+    this.cartIcon = new CartIcon();
+
+    cartIconHolder.append(this.cartIcon.elem);
   }
 
   renderProductsGrid() {
