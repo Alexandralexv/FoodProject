@@ -1,0 +1,15 @@
+@import url("./assets/styles/common.css");
+@import url("../assets/styles/carousel.css");
+@import url("../assets/styles/ribbon.css");
+@import url("../assets/styles/slider.css");
+@import url("../assets/styles/products-grid.css");
+@import url("../assets/styles/modal.css");
+@import url("../assets/styles/card.css");
+@import url("../assets/styles/mobile.css");
+@import url("../assets/styles/filters.css");
+
+@import url("../assets/styles/cart-icon.css");
+@import url("../assets/styles/cart-buttons.css");
+@import url("../assets/styles/cart-container.css");
+@import url("../assets/styles/cart-form.css");
+@import url("../assets/styles/cart-product.css");

@@ -1,14 +1,14 @@
-import Carousel from "../blocks/Carousel.js";
-import slides from "../storages/slides.js";
+import Carousel from "./assets/blocks/Carousel.js";
+import slides from "./assets/storages/slides.js";
 
-import RibbonMenu from "../blocks/RibbonMenu.js";
-import categories from "../storages/categories.js";
+import RibbonMenu from "./assets/blocks/RibbonMenu.js";
+import categories from "./assets/storages/categories.js";
 
-import StepSlider from "../blocks/StepSlider.js";
-import ProductsGrid from "../blocks/ProductsGrid.js";
+import StepSlider from "./assets/blocks/StepSlider.js";
+import ProductsGrid from "./assets/blocks/ProductsGrid.js";
 
-import CartIcon from "../blocks/CartIcon.js";
-import Cart from "../blocks/Cart.js";
+import CartIcon from "./assets/blocks/CartIcon.js";
+import Cart from "./assets/blocks/Cart.js";
 
 export default class Main {
   constructor() {}
@@ -104,7 +104,7 @@ export default class Main {
   }
 
   async fetchProducts() {
-    let response = await fetch("../products.json");
+    let response = await fetch("./products.json");
     // let response = await fetch("../../products.json");
     let products = await response.json();
 
