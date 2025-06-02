@@ -34,7 +34,7 @@ describe("Cart class", () => {
     image: "test.jpg",
   };
 
-  test("should add a new product to the cart", () => {
+  test("следует добавить новый товар в корзину", () => {
     cart.addProduct(product);
 
     expect(cart.cartItems).toHaveLength(1);
@@ -43,7 +43,7 @@ describe("Cart class", () => {
     expect(mockCartIcon.update).toHaveBeenCalledWith(cart);
   });
 
-  test("should increase count if product already exists", () => {
+  test("следует увеличить количество, если продукт уже существует", () => {
     cart.addProduct(product);
     cart.addProduct(product);
 
@@ -52,7 +52,7 @@ describe("Cart class", () => {
     expect(mockCartIcon.update).toHaveBeenCalledTimes(2);
   });
 
-  test("should update product count and remove if zero", () => {
+  test("следует обновить количество продуктов и удалить, если оно равно нулю", () => {
     cart.addProduct(product);
     cart.updateProductCount(product.id, -1);
 
@@ -60,7 +60,7 @@ describe("Cart class", () => {
     expect(mockCartIcon.update).toHaveBeenCalledTimes(2);
   });
 
-  test("should calculate total price correctly", () => {
+  test("следует правильно рассчитать общую стоимость", () => {
     const product2 = { ...product, id: "product2", price: 50 };
     cart.addProduct(product); // count = 1
     cart.addProduct(product2); // count = 1
