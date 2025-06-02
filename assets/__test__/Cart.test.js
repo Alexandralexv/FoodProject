@@ -43,22 +43,22 @@ describe("Cart class", () => {
     expect(mockCartIcon.update).toHaveBeenCalledWith(cart);
   });
 
-  //   test("следует увеличить количество, если продукт уже существует", () => {
-  //     cart.addProduct(product);
-  //     cart.addProduct(product);
+  test("следует увеличить количество, если продукт уже существует", () => {
+    cart.addProduct(product);
+    cart.addProduct(product);
 
-  //     expect(cart.cartItems).toHaveLength(1);
-  //     expect(cart.cartItems[0].count).toBe(2);
-  //     expect(mockCartIcon.update).toHaveBeenCalledTimes(2);
-  //   });
+    expect(cart.cartItems).toHaveLength(1);
+    expect(cart.cartItems[0].count).toBe(2);
+    expect(mockCartIcon.update).toHaveBeenCalledTimes(2);
+  });
 
-  //   test("следует обновить количество продуктов и удалить, если оно равно нулю", () => {
-  //     cart.addProduct(product);
-  //     cart.updateProductCount(product.id, -1);
+  test("следует обновить количество продуктов и удалить, если оно равно нулю", () => {
+    cart.addProduct(product);
+    cart.updateProductCount(product.id, -1);
 
-  //     expect(cart.cartItems).toHaveLength(0);
-  //     expect(mockCartIcon.update).toHaveBeenCalledTimes(2);
-  //   });
+    expect(cart.cartItems).toHaveLength(0);
+    expect(mockCartIcon.update).toHaveBeenCalledTimes(2);
+  });
 
   test("следует правильно рассчитать общую стоимость", () => {
     const product2 = { ...product, id: "product2", price: 50 };
